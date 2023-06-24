@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Cloud Storage</title>
 
     <style>
         * {
@@ -66,15 +66,37 @@
             color: #abc1ee;
         }
     </style>
+    <script src="https://cdn.bootcdn.net/ajax/libs/blueimp-md5/2.18.0/js/md5.js"></script>
 </head>
 <body>
     <div class="container">
         <div class="login-wrapper">
             <div class="header">Login</div>
             <div class="form-wrapper">
-                <input type="text" name="username" placeholder="username" class="input-item">
-                <input type="password" name="password" placeholder="password" class="input-item">
-                <div class="btn">Login</div>
+                <input type="text" id="username" placeholder="username" class="input-item">
+                <input type="password" id="password" placeholder="password" class="input-item">
+                <button type="button" onclick="login()" class="btn">Login</button>
+                <script>
+                    function login() {
+                        var username = document.getElementById("username");
+                        var password = document.getElementById("password");
+                        if(username.value == "" || password.value == "") {
+                            alert("账号密码不能为空");
+                        }
+                        
+                        var xhr = new XMLHttpRequest();
+                        xhr.open('POST', 'api', true);
+                        xhr.setRequestHeader('content-type', 'application/json');
+                        xhr.onreadystatechange = function() {
+                            if(result.code >= 300){
+                                alert(xhr.responseText);
+                            } else {
+                                console.log(xhr.responseText);
+                            }
+                        }
+                        xhr.send(JSON.stringify({"username": username.value, "password": md5(password.value)}));
+                    }
+                </script>
             </div>
             <div class="msg">
                 Don't have account?
