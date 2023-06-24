@@ -5,10 +5,9 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func AddLoginRoutes(rg *gin.RouterGroup) {
-	users := rg.Group("/login")
-
-	users.GET("/", func(c *gin.Context) {
-		c.JSON(http.StatusOK, "login")
+func AddLoginRoutes(router *gin.RouterGroup) {
+	loginRouter := router.Group("/login")
+	loginRouter.GET("/", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "login.html", "login")
 	})
 }

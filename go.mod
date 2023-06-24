@@ -1,4 +1,4 @@
-module github.com/nacl2000/nacl_clould_storage
+module github.com/nacl2000/clould_storage
 
 go 1.20
 
