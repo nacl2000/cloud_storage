@@ -6,5 +6,8 @@ go_library(
     data = ["//frontend/login:login_html"],
     importpath = "github.com/nacl2000/clould_storage/routers/login",
     visibility = ["//visibility:public"],
-    deps = ["@com_github_gin_gonic_gin//:go_default_library"],
+    deps = [
+        "@com_github_gin_gonic_contrib//sessions",
+        "@com_github_gin_gonic_gin//:gin",
+    ],
 )
