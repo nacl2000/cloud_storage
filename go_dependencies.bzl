@@ -2,6 +2,13 @@ load("@bazel_gazelle//:deps.bzl", "go_repository")
 
 def go_dependencies():
     go_repository(
+        name = "com_github_boj_redistore",
+        importpath = "github.com/boj/redistore",
+        sum = "h1:RmdPFa+slIr4SCBg4st/l/vZWVe9QJKMXGO60Bxbe04=",
+        version = "v0.0.0-20180917114910-cd5dcc76aeff",
+    )
+
+    go_repository(
         name = "com_github_bytedance_sonic",
         importpath = "github.com/bytedance/sonic",
         sum = "h1:6iJ6NqdoxCDr6mbY8h18oSO+cShGSMRGCEo7F2h0x8s=",
@@ -31,6 +38,13 @@ def go_dependencies():
         sum = "h1:Y/yl/+YNO8GZSjAhjMsSuLt29uWRFHdHYUb5lYOV9qE=",
         version = "v0.1.0",
     )
+    go_repository(
+        name = "com_github_gin_gonic_contrib",
+        importpath = "github.com/gin-gonic/contrib",
+        sum = "h1:dyuNlYlG1faymw39NdJddnzJICy6587tiGSVioWhYoE=",
+        version = "v0.0.0-20221130124618-7e01895a63f2",
+    )
+
     go_repository(
         name = "com_github_gin_gonic_gin",
         importpath = "github.com/gin-gonic/gin",
@@ -74,6 +88,13 @@ def go_dependencies():
         version = "v1.5.0",
     )
     go_repository(
+        name = "com_github_gomodule_redigo",
+        importpath = "github.com/gomodule/redigo",
+        sum = "h1:K/R+8tc58AaqLkqG2Ol3Qk+DR/TlNuhuh457pBFPtt0=",
+        version = "v2.0.0+incompatible",
+    )
+
+    go_repository(
         name = "com_github_google_go_cmp",
         importpath = "github.com/google/go-cmp",
         sum = "h1:Khx7svrCpmxxtHBq5j2mp/xVjsi8hQMfNLvJFAlrGgU=",
@@ -85,6 +106,25 @@ def go_dependencies():
         sum = "h1:A8PeW59pxE9IoFRqBp37U+mSNaQoZ46F1f0f863XSXw=",
         version = "v1.0.0",
     )
+    go_repository(
+        name = "com_github_gorilla_context",
+        importpath = "github.com/gorilla/context",
+        sum = "h1:AWwleXJkX/nhcU9bZSnZoi3h/qGYqQAGhq6zZe/aQW8=",
+        version = "v1.1.1",
+    )
+    go_repository(
+        name = "com_github_gorilla_securecookie",
+        importpath = "github.com/gorilla/securecookie",
+        sum = "h1:miw7JPhV+b/lAHSXz4qd/nN9jRiAFV5FwjeKyCS8BvQ=",
+        version = "v1.1.1",
+    )
+    go_repository(
+        name = "com_github_gorilla_sessions",
+        importpath = "github.com/gorilla/sessions",
+        sum = "h1:DHd3rPN5lE3Ts3D8rKkQ8x/0kqfeNmBAaiSi+o7FsgI=",
+        version = "v1.2.1",
+    )
+
     go_repository(
         name = "com_github_json_iterator_go",
         importpath = "github.com/json-iterator/go",

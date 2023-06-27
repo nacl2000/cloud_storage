@@ -57,4 +57,5 @@ protobuf_deps()
 
 load(":go_dependencies.bzl", "go_dependencies")
 
+# gazelle:repository_macro go_dependencies.bzl%go_dependencies
 go_dependencies()
