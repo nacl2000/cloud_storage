@@ -14,6 +14,13 @@ const (
 )
 
 type Config struct {
+	DBInfo DBInfo `yaml:"DBInfo"`
+}
+
+type DBInfo struct {
+	Host string `yaml: "Host"`
+	User string `yaml: "User"`
+	Passwd string `yaml: "Passwd"`
 }
 
 var config = &Config{}

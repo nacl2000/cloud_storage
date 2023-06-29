@@ -15,6 +15,7 @@ func register(router *gin.Engine) {
 
 	loginRoutes(routerV1)
 
+	userRoutes(routerV1)
 }
 
 // getRoutes will create our routes of our entire application
@@ -38,4 +39,10 @@ func loginRoutes(router *gin.RouterGroup) {
 
 	loginRouter.GET("/", login.Initial)
 	loginRouter.POST("/api", login.Login)
+}
+
+func userRoutes(router *gin.RouterGroup) {
+	userRouter := router.Group("/user")
+
+	// userRouter.POST("/create",)
 }
