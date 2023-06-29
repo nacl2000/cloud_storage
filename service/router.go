@@ -43,6 +43,5 @@ func loginRoutes(router *gin.RouterGroup) {
 
 func userRoutes(router *gin.RouterGroup) {
 	userRouter := router.Group("/user")
-
-	// userRouter.POST("/create",)
+	userRouter.POST("/register", login.UserRegister)
 }

@@ -12,6 +12,6 @@ func Md5Sum(str string) string {
 }
 
 func GetSaltingPwd(passwd string) string {
-
-	return ""
+	// todo salt treatment passwd
+	return Md5Sum(passwd)
 }

@@ -18,9 +18,11 @@ type Config struct {
 }
 
 type DBInfo struct {
-	Host string `yaml: "Host"`
-	User string `yaml: "User"`
-	Passwd string `yaml: "Passwd"`
+	Host   string `yaml:"Host"`
+	User   string `yaml:"User"`
+	Passwd string `yaml:"Passwd"`
+	Port   string `yaml:"Port"`
+	DBName string `yaml:"DBName"`
 }
 
 var config = &Config{}
