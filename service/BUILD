@@ -16,6 +16,7 @@ go_library(
         "@com_github_gin_gonic_contrib//sessions",
         "@com_github_gin_gonic_gin//:gin",
         "//routers/login",
+        "//routers/home",
         "//tools/path",
     ],
 )

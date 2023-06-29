@@ -5,6 +5,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/gin-gonic/contrib/sessions"
 	"github.com/nacl2000/clould_storage/routers/login"
+	"github.com/nacl2000/clould_storage/routers/home"
 	"github.com/nacl2000/clould_storage/tools/path"
 )
 
@@ -20,7 +21,7 @@ func main() {
 // this way every group of routes can be defined in their own file
 // so this one won't be so messy
 func getRoutes() {
-	htmlPathPattern := filepath.Join("frontend", "login", "*.html")
+	htmlPathPattern := filepath.Join("frontend", "**", "*.html")
 	router.LoadHTMLGlob(path.GetSourceCodePath(&htmlPathPattern))
 
 	cookieStore := sessions.NewCookieStore([]byte("cloud_storage"))
@@ -32,4 +33,5 @@ func getRoutes() {
 
 	v1 := router.Group("/v1")
 	login.AddLoginRoutes(v1)
+	home.AddHomeRoutes(v1)
 }

@@ -1,5 +1,5 @@
 filegroup(
-    name = "login_ui",
+    name = "home_ui",
     srcs = glob(["**"]),
     visibility = ["//visibility:public"],
 )
