@@ -11,6 +11,10 @@ type user struct {
 	Password string  `json:"password"`
 }
 
+func loadLoginPage(c *gin.Context) {
+	c.HTML(http.StatusOK, "login.html", "login")
+}
+
 func login(c *gin.Context) {
 	var requester user
 	if err := c.BindJSON(&requester); err != nil {
@@ -24,13 +28,11 @@ func login(c *gin.Context) {
 	session := sessions.Default(c)
 	session.Set("username", requester.Username)
 	session.Save()
-	c.JSON(200, gin.H{"username": session.Get("username")})
+	c.Redirect(302, "/v1/home")
 }
 
 func AddLoginRoutes(router *gin.RouterGroup) {
 	loginRouter := router.Group("/login")
-	loginRouter.GET("/", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "login.html", "login")
-	})
+	loginRouter.GET("/", loadLoginPage)
 	loginRouter.POST("/api", login)
 }
