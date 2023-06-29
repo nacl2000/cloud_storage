@@ -1,8 +1,11 @@
-# cloud storage
-## required
+# Cloud storage
+
+## Required
 1. bazel
 2. golang 1.20
 3. linux
+
+## Run server command
 `bazel run //service:main`
 
 ## Notes
