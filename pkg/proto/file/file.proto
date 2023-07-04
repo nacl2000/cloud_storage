@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package cloud_storage.file;
+
+option go_package = "github.com/nacl2000/cloud_storage/pkg/proto/file";
+
+// next id = 3
+message FileMetadata {
+    string owner = 1;
+    string file_path = 2;
+}

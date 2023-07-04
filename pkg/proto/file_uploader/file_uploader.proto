@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package cloud_storage.file_uploader;
+
+import "pkg/proto/file/file.proto";
+
+option go_package = "github.com/nacl2000/cloud_storage/pkg/proto/file_uploader";
+
+// next id = 2
+message UploadFileRequest {
+    file.FileMetadata file_metadata = 1;
+}
+
+// next id = 3
+message UploadFileResponse {
+    string message = 1;
+    string status = 2;
+}
+
+service FileUploader {
+    rpc UploadFile (UploadFileRequest) returns (UploadFileResponse) {}
+}
