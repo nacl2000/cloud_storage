@@ -1,36 +1,56 @@
 package login
 
 import (
-	"net/http"
-	"github.com/gin-gonic/gin"
 	"github.com/gin-gonic/contrib/sessions"
+	"github.com/gin-gonic/gin"
+	"github.com/nacl2000/clould_storage/dal"
+	"github.com/nacl2000/clould_storage/model"
+	"github.com/nacl2000/clould_storage/tools/calculte"
+	"net/http"
+	"strings"
 )
 
-type user struct {
-	Username string  `json:"username"`
-	Password string  `json:"password"`
+func Initial(c *gin.Context) {
+	c.HTML(http.StatusOK, "login.html", "login")
 }
 
-func login(c *gin.Context) {
-	var requester user
+func Login(c *gin.Context) {
+	var requester model.User
 	if err := c.BindJSON(&requester); err != nil {
 		c.String(404, "Login failed!")
 		return
 	}
-	if requester.Username ==  "" ||  requester.Password == "" {
+	if requester.Username == "" || requester.Password == "" {
 		c.String(404, "Username or password should not be empty.")
 		return
 	}
+	if !authUser(requester) {
+		c.String(http.StatusUnauthorized, "Username or passwd is error")
+		return
+	}
+
 	session := sessions.Default(c)
 	session.Set("username", requester.Username)
 	session.Save()
-	c.JSON(200, gin.H{"username": session.Get("username")})
+	c.JSON(http.StatusOK, gin.H{"username": session.Get("username")})
 }
 
-func AddLoginRoutes(router *gin.RouterGroup) {
-	loginRouter := router.Group("/login")
-	loginRouter.GET("/", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "login.html", "login")
-	})
-	loginRouter.POST("/api", login)
+func UserRegister(c *gin.Context) {
+	var requester model.User
+	if err := c.BindJSON(&requester); err != nil {
+		c.String(404, "register failed!")
+		return
+	}
+	if requester.Username == "" || requester.Password == "" {
+		c.String(404, "Username or password should not be empty.")
+		return
+	}
+	dal.CreateUser(requester)
+	c.HTML(http.StatusOK, "login.html", "register success")
+}
+
+func authUser(userInfo model.User) bool {
+	passwd := dal.QueryPasswdByMd5(userInfo.Username)
+	inputPasswd := calculte.GetSaltingPwd(userInfo.Password)
+	return strings.ToUpper(passwd) == strings.ToUpper(inputPasswd)
 }

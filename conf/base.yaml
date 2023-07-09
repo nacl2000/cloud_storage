@@ -1,0 +1,4 @@
+DBInfo:
+  Host: "localhost"
+  User: "cloud"
+  Passwd: "use_test_cloud"
